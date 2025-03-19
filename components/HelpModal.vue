@@ -46,8 +46,21 @@
             小屏用户可以选择只显示部分输入方案，以获得更好的体验。
           </p>
 
-          <p class="py-2 text-xs text-gray-500">
-            Author: <a href="https://rika.link/about" target="_blank">@Rika</a>
+          <p class="py-2 text-gray-500 flex items-end gap-2">
+            如果觉得好玩的话给我点个Star吧😭→
+            <a
+              href="https://github.com/RikaKagurasaka/urime-plus"
+              target="_blank"
+              class="i-mdi-github text-gray-900 dark:text-gray-50 inline-block text-3xl"
+            >
+            </a>
+          </p>
+
+          <p class="py-2 text-gray-500 flex items-center gap-2">
+            <span
+              >Author:
+              <a href="https://rika.link/about" target="_blank">@Rika</a></span
+            >
           </p>
 
           <h3 class="text-lg font-bold mt-3">更新笔记</h3>
