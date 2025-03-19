@@ -67,6 +67,10 @@
           <ul>
             <li>
               <span class="font-bold">2025-03-19</span>
+              <span> 把码首的「難」改成「重」 </span>
+            </li>
+            <li>
+              <span class="font-bold">2025-03-19</span>
               <span> 全部重写！加新功能！ </span>
             </li>
             <li>
