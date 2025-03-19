@@ -15,6 +15,7 @@ const emit = defineEmits<{
   (e: "update:modelValue", value: string): void;
   (e: "submit"): void;
 }>();
+const { solved } = useGame();
 const submit = () => {
   if (!valid.value) return;
   emit("submit");
@@ -29,7 +30,8 @@ const guessRow = computed(() => {
 const valid = computed(() => {
   return (
     [...inputValue.value].length === 1 &&
-    Object.values(guessRow.value || {}).filter(Boolean).length > 1
+    Object.values(guessRow.value || {}).filter(Boolean).length > 1 &&
+    !solved.value
   );
 });
 </script>

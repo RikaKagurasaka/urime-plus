@@ -280,6 +280,12 @@ const _useGame = () => {
     }
   });
 
+  const solved = computed(() => {
+    return guesses.value.some((guess) => {
+      return guess.char === ansRow.value?.char;
+    });
+  });
+
   // Return public API
   return {
     df,
@@ -298,6 +304,7 @@ const _useGame = () => {
     guessResults,
     submitGuess,
     isReady,
+    solved,
   };
 };
 
