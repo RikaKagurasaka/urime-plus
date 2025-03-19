@@ -1,0 +1,4 @@
+[submodule "zh-ime-data"]
+	path = zh-ime-data
+	url = git@github.com:RikaKagurasaka/zh-ime-data.git
+	shallow = true
