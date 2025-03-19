@@ -2,7 +2,7 @@
  * Compare guess with answer
  */
 export function compare(guess: string, answer: string, maxLen: number): string {
-  if (!guess) {
+  if (!guess || !answer) {
     return Array(maxLen).fill("-").join("");
   }
 
