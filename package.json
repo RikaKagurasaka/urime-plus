@@ -11,9 +11,11 @@
   },
   "dependencies": {
     "@nuxt/eslint": "1.2.0",
+    "@nuxt/image": "1.10.0",
     "@types/lodash": "^4.17.16",
     "@unocss/nuxt": "66.1.0-beta.5",
     "@unocss/reset": "66.1.0-beta.5",
+    "@vite-pwa/nuxt": "^0.10.6",
     "@vueuse/core": "^13.0.0",
     "@vueuse/nuxt": "13.0.0",
     "eslint": "^9.0.0",
