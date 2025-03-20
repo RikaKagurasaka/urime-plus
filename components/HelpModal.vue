@@ -15,23 +15,23 @@
           <ul>
             <li class="flex gap-2 items-center">
               <CharSquare class="w-8" char="竹" status="o" />
-              表示这个编码在正确答案的相同位置上出现。
+              绿色表示这个编码在正确答案的相同位置上出现。
             </li>
             <li class="flex gap-2 items-center">
               <CharSquare class="w-8" char="E" status="?" />
-              表示这个编码在正确答案中出现过，但位置不同。
+              黄色表示这个编码在正确答案中出现过，但位置不同。
             </li>
             <li class="flex gap-2 items-center">
               <CharSquare class="w-8" char="ㄉ" status="x" />
-              表示这个编码在正确答案中没有出现过。
+              灰色表示这个编码在正确答案中没有出现过。
             </li>
             <li class="flex gap-2 items-center">
               <CharSquare class="w-8" char="F" status="-" />
-              表示这个编码的正确性没有被判定。
+              黑白表示这个编码的正确性没有被判定。
             </li>
           </ul>
           <p class="py-2">
-            一个汉字有多个编码的情况下，可以点击任意一个编码选择用于猜测，回车后会提交选中的编码。答案一定选用第一个编码。
+            一个汉字有多个编码的情况下，可以点选任意一个编码使之变成蓝色用于猜测，回车后会提交选中的编码。答案一定选用第一个编码。
           </p>
           <p class="py-2">
             由于编码可能是变长的，会在编码尾部追加空格以补足最大长度。空格也会被判定正确性。
@@ -63,6 +63,31 @@
             >
           </p>
 
+          <h3 class="text-lg font-bold mt-3">FAQ</h3>
+          <p>问：为什么有的汉字我看不到？</p>
+          <p>答：困难模式会有许多生僻字，一般设备有可能缺少字库而无法显示。</p>
+          <br />
+          <p>问：困难模式的字我不会输入啊！</p>
+          <p>
+            答：同上，困难模式主要面向汉字或输入法爱好者，推荐在电脑上使用合适的字体和输入法游玩，普通人难以游玩是正常的。
+          </p>
+          <br />
+          <p>问：手机上的排版好奇怪。</p>
+          <p>
+            答：如果是输入框大小不一，可能是你使用的浏览器版本较低或者不支持某些特性。如果是会超出页面右侧，这个我确实没想到比较好的排版方式，我已经尽力了，请见谅。
+          </p>
+          <br />
+          <p>问：我只会拼音，怎么玩这个游戏？</p>
+          <p>
+            答：推荐你游玩
+            <a href="https://handle.antfu.me/" target="_blank">漢兜</a>或
+            <a href="https://cy.surprising.studio/" target="_blank">词影</a
+            >，这两个游戏都更适合大众。本游戏纯属输入法爱好者的本人一时兴起之作，承蒙各位厚爱发展至此。
+          </p>
+          <br />
+          <p>问：为什么有的地方拼音明明是ü，但显示的是u？</p>
+          <p>答：jqxy后面的ü会变成u，ln后面的ü会转写成v。</p>
+          <br />
           <h3 class="text-lg font-bold mt-3">更新笔记</h3>
           <ul>
             <li>
@@ -162,5 +187,8 @@ const showModal = useVModel(props, "showModal", emit);
 <style lang="css" scoped>
 .modal-content {
   @apply w-fit mx-auto  h-fit bg-white dark:bg-gray-900 p-8 rounded-md max-w-3xl;
+}
+a[href]:not([class^="i-"]) {
+  @apply text-blue-500 underline underline-offset-4 after:content-['↗'] after:text-xs;
 }
 </style>
