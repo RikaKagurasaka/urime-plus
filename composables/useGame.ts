@@ -32,35 +32,37 @@ async function loadData() {
   const csvData = new TextDecoder().decode(decompressedData);
   const data = Papa.parse(csvData, {
     header: true,
-    dynamicTyping: true,
+    transform: (value, header) => {
+      let result = value as any;
+      if (header === "lvl") {
+        result = value ? parseInt(value) : null;
+      }
+      if (COLS_ALL.includes(header as Col)) {
+        result = value ? value.split("|") : null;
+      }
+      if (
+        reverseWubi.value &&
+        (header.toString().startsWith("wubi") ||
+          header.toString().startsWith("zhengma"))
+      ) {
+        if (result && "reverse" in result) {
+          result = result.reverse();
+        }
+      }
+      return result;
+    },
   }) as ParseResult<any>;
 
   let dict = Object.fromEntries(
     data.data.map((row) => [
       row.char,
       {
-        ...mapValues(row, (v) => (typeof v == "string" ? v.split("|") : v)),
-        lvl: row.lvl ? parseInt(row.lvl) : null,
+        ...row,
         unicode: [row.char?.codePointAt(0)?.toString(16)],
       },
     ])
   ) as DataDictionary;
 
-  if (reverseWubi.value) {
-    dict = mapValues(dict, (v) => {
-      return mapValues(v, (code, col) => {
-        if (
-          col.startsWith("wubi") &&
-          code &&
-          typeof code === "object" &&
-          "reverse" in code
-        ) {
-          return (code as string[])?.reverse();
-        }
-        return code;
-      });
-    }) as unknown as DataDictionary;
-  }
   return dict;
 }
 
@@ -115,7 +117,7 @@ const _useGame = () => {
   const availableChars = computed(() => {
     return Object.keys(toValue(df)).filter((char) => {
       return (
-        cols.value.every((col) => toValue(df)[char][col] !== null) &&
+        cols.value.every((col) => toValue(df)[char][col]) &&
         isLvlMatch(toValue(df)[char].lvl, difficulty.value)
       );
     });

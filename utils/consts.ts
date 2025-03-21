@@ -1,4 +1,10 @@
-export const COLS_SHAPE = ["cj", "wubi98", "wubi86"] as const;
+export const COLS_SHAPE = [
+  "cj",
+  "wubi98",
+  "wubi86",
+  "sijiao",
+  "zhengma",
+] as const;
 export const COLS_PHONETIC = ["terra", "bopomofo"] as const;
 export const COLS_DOUBLE = [
   "flypy",
@@ -41,6 +47,8 @@ export const colLabels: Record<ColExtended, string> = {
   cj: "仓颉",
   wubi98: "98五笔",
   wubi86: "86五笔",
+  sijiao: "四角号码",
+  zhengma: "郑码",
 
   // Phonetic methods
   bopomofo: "注音",
@@ -77,6 +85,8 @@ export const letterMaps = {
     cj: ["手田水口廿卜山戈人心", "日尸木火土竹十大中", "重難金女月弓一"],
     wubi98: ["qwertyuiop", "asdfghjkl", " xcvbnm"],
     wubi86: ["qwertyuiop", "asdfghjkl", " xcvbnm"],
+    sijiao: ["789", "456", "123", "0"],
+    zhengma: ["qwertyuiop", "asdfghjkl;", "zxcvbnm"],
     double: ["qwertyuiop", "asdfghjkl;", "zxcvbnm"],
     terra: ["12345", "qwertyuiop", "asdfghjkl", "zxcvbnm"],
     bopomofo: [
