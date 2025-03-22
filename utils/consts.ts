@@ -6,6 +6,7 @@ export const COLS_SHAPE = [
   "zhengma",
   "huma",
   "xuma",
+  "liur",
 ] as const;
 export const COLS_PHONETIC = ["terra", "bopomofo"] as const;
 export const COLS_DOUBLE = [
@@ -53,7 +54,7 @@ export const colLabels: Record<ColExtended, string> = {
   zhengma: "郑码",
   huma: "虎码",
   xuma: "徐码",
-
+  liur: "嘸蝦米",
   // Phonetic methods
   bopomofo: "注音",
   terra: "地球拼音",
@@ -93,6 +94,7 @@ export const letterMaps = {
     zhengma: ["qwertyuiop", "asdfghjkl;", "zxcvbnm"],
     huma: ["qwertyuiop", "asdfghjkl", "zxcvbnm"],
     xuma: ["qwertyuiop", "asdfghjkl", "zxcvbnm"],
+    liur: ["qwertyuiop", "asdfghjkl", "zxcvbnm"],
     double: ["qwertyuiop", "asdfghjkl;", "zxcvbnm"],
     terra: ["12345", "qwertyuiop", "asdfghjkl", "zxcvbnm"],
     bopomofo: [

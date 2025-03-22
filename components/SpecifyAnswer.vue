@@ -13,7 +13,7 @@
         <p class="">输入一个字，生成一个链接，分享给你的朋友</p>
 
         <input type="text" v-model="inputChar" class="char-input" />
-        <div class="grid grid-cols-2 gap-2" v-if="isValid">
+        <div class="grid grid-cols-2 gap-1 text-sm" v-if="isValid">
           <template v-for="(code, col) in answerRow" :key="col">
             <span>{{ colLabels[col] }}</span>
             <div class="font-mono">

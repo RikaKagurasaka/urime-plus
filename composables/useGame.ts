@@ -47,7 +47,7 @@ async function loadData() {
       }
       if (
         reverseWubi.value &&
-        ["wubi", "zhengma", "xuma", "huma"].some((col) =>
+        ["wubi", "zhengma", "xuma", "huma","liur"].some((col) =>
           header.toString().startsWith(col)
         )
       ) {

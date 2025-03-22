@@ -93,6 +93,12 @@
             <li>
               <span class="font-bold">2025-03-22</span>
               <span>
+                追加嘸蝦米（这游戏怎么有要变成输入法查码工具的趋势了）
+              </span>
+            </li>
+            <li>
+              <span class="font-bold">2025-03-22</span>
+              <span>
                 添加回答正确时的动画效果（可以被
                 <a
                   href="https://developer.mozilla.org/zh-CN/docs/Web/CSS/@media/prefers-reduced-motion"
