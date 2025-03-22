@@ -8,6 +8,8 @@ export type DataDictionary = {
   [char: string]: Record<Col, string[] | null> & {
     char: string;
     lvl: number | null;
+    cht: boolean;
+    chs: boolean;
   };
 };
 
@@ -36,6 +38,9 @@ async function loadData() {
       let result = value as any;
       if (header === "lvl") {
         result = value ? parseInt(value) : null;
+      }
+      if (header === "cht" || header === "chs") {
+        result = value === "1";
       }
       if (COLS_ALL.includes(header as Col)) {
         result = value ? value.split("|") : null;
@@ -80,6 +85,14 @@ function isLvlMatch(
   }
 }
 
+function isChtOrChsMatch(
+  cht: boolean,
+  chs: boolean,
+  chtOrChs: "cht" | "chs" | "both"
+) {
+  return chtOrChs === "cht" ? cht : chtOrChs === "chs" ? chs : cht || chs;
+}
+
 // Main composable
 const _useGame = () => {
   // State initialization
@@ -98,6 +111,9 @@ const _useGame = () => {
   const difficulty = useLocalStorage("difficulty", "easy") as Ref<
     "easy" | "medium" | "hard"
   >;
+  const chtOrChs = useLocalStorage("chtOrChs", "chs") as Ref<
+    "cht" | "chs" | "both"
+  >;
 
   const cols = useLocalStorage("cols", [
     ...DEFAULT_COLS,
@@ -115,10 +131,13 @@ const _useGame = () => {
   });
 
   const availableChars = computed(() => {
-    return Object.keys(toValue(df)).filter((char) => {
+    const dfValue = toValue(df);
+    return Object.keys(dfValue).filter((char) => {
+      const charValue = dfValue[char];
       return (
-        cols.value.every((col) => toValue(df)[char][col]) &&
-        isLvlMatch(toValue(df)[char].lvl, difficulty.value)
+        cols.value.every((col) => charValue[col]) &&
+        isLvlMatch(charValue.lvl, difficulty.value) &&
+        isChtOrChsMatch(charValue.cht, charValue.chs, chtOrChs.value)
       );
     });
   });
@@ -307,6 +326,7 @@ const _useGame = () => {
     submitGuess,
     isReady,
     solved,
+    chtOrChs,
   };
 };
 

@@ -91,6 +91,10 @@
           <h3 class="text-lg font-bold mt-3">更新笔记</h3>
           <ul>
             <li>
+              <span class="font-bold">2025-03-22</span>
+              <span> 增加仅简体/繁体的选项 </span>
+            </li>
+            <li>
               <span class="font-bold">2025-03-21</span>
               <span> 追加四角号码和郑码 </span>
             </li>

@@ -35,22 +35,30 @@
                 {{ option.label }}
               </button>
             </div>
-          </div>
-
-          <!-- Cell Size options -->
-          <!-- <div class="setting-group">
-            <h3>单元格大小</h3>
+            <h3>简繁体</h3>
+            <p class="text-xs text-gray-500 dark:text-gray-400 mb-1">
+              简繁体的判定可能存在错误，仅供参考
+            </p>
             <div class="options-container">
               <button
-                v-for="size in cellSizeOptions"
-                :key="size"
-                :class="['option-btn', { active: cellSize === size }]"
-                @click="cellSize = size"
+                :class="['option-btn', { active: chtOrChs === 'chs' }]"
+                @click="chtOrChs = 'chs'"
               >
-                {{ cellSizeLabels[size] }}
+                仅简体</button
+              ><button
+                :class="['option-btn', { active: chtOrChs === 'cht' }]"
+                @click="chtOrChs = 'cht'"
+              >
+                仅繁体
+              </button>
+              <button
+                :class="['option-btn', { active: chtOrChs === 'both' }]"
+                @click="chtOrChs = 'both'"
+              >
+                两者
               </button>
             </div>
-          </div> -->
+          </div>
 
           <div class="setting-group">
             <h3>五笔/郑码</h3>
@@ -182,7 +190,7 @@
 </template>
 
 <script setup lang="ts">
-const { difficulty, cols, availableChars } = useGame();
+const { difficulty, cols, availableChars, chtOrChs } = useGame();
 const { reverseWubi } = useConfig();
 const props = defineProps<{
   isOpen: boolean;
@@ -349,7 +357,7 @@ function isDisabled(col: Col): boolean {
 }
 
 .setting-group h3 {
-  @apply mb-3 text-lg font-medium;
+  @apply my-3 text-lg font-medium;
   &:has(+ p) {
     @apply mb-1;
   }
