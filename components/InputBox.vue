@@ -1,12 +1,24 @@
 <template>
   <div class="input-box">
     <button @click="submit" :disabled="!valid">提交</button>
-    <input type="text" v-model="inputValue" @keypress.enter="submit" />
+    <input
+      type="text"
+      v-model="inputValue"
+      @keypress.enter="submit"
+      ref="inputRef"
+    />
     <button @click="submit" :disabled="!valid">提交</button>
   </div>
+  <!-- <teleport to="body">
+    <canvas
+      ref="canvasRef"
+      class="fixed left-0 top-0 w-screen h-screen z-100 pointer-events-none"
+    />
+  </teleport> -->
 </template>
 
 <script setup lang="ts">
+import confetti from "canvas-confetti";
 const props = defineProps<{
   modelValue: string;
 }>();
@@ -20,9 +32,29 @@ const submit = () => {
   if (!valid.value) return;
   emit("submit");
 };
+const inputRef = ref<HTMLInputElement>();
+const {
+  width: inputWidth,
+  height: inputHeight,
+  left: inputLeft,
+  top: inputTop,
+} = useElementBounding(inputRef);
+
+watch(solved, () => {
+  if (solved.value) {
+    confetti({
+      particleCount: 100,
+      spread: 100,
+      disableForReducedMotion: true,
+      origin: {
+        x: (inputLeft.value + inputWidth.value / 2) / window.innerWidth,
+        y: (inputTop.value + inputHeight.value / 2) / window.innerHeight,
+      },
+    });
+  }
+});
 
 const { getDefaultRowByChar } = useGame();
-
 const guessRow = computed(() => {
   return getDefaultRowByChar(inputValue.value);
 });

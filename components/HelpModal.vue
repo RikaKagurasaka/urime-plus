@@ -92,6 +92,17 @@
           <ul>
             <li>
               <span class="font-bold">2025-03-22</span>
+              <span>
+                添加回答正确时的动画效果（可以被
+                <a
+                  href="https://developer.mozilla.org/zh-CN/docs/Web/CSS/@media/prefers-reduced-motion"
+                  target="_blank"
+                  >Reduced Motion</a
+                >关闭）
+              </span>
+            </li>
+            <li>
+              <span class="font-bold">2025-03-22</span>
               <span> 追加虎码和徐码 </span>
             </li>
             <li>
