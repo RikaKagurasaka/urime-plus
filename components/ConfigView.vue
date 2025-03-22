@@ -61,7 +61,7 @@
           </div>
 
           <div class="setting-group">
-            <h3>五笔/郑码</h3>
+            <h3>简/全码</h3>
             <p class="text-xs text-gray-500 dark:text-gray-400 mb-1">
               变更后需要刷新页面生效
             </p>

@@ -92,6 +92,10 @@
           <ul>
             <li>
               <span class="font-bold">2025-03-22</span>
+              <span> 追加虎码和徐码 </span>
+            </li>
+            <li>
+              <span class="font-bold">2025-03-22</span>
               <span> 增加仅简体/繁体的选项 </span>
             </li>
             <li>
