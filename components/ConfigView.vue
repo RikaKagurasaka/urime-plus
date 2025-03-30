@@ -183,6 +183,20 @@
               </div>
             </div>
           </div>
+          <div class="setting-group">
+            <h3>自动滚动</h3>
+            <p class="text-xs text-gray-500 dark:text-gray-400 mb-1">
+              在输入框中输入汉字后，自动将屏幕滚动到最底部以显示备选编码
+            </p>
+            <div class="options-container">
+              <button
+                :class="['option-btn', { active: autoScroll }]"
+                @click="autoScroll = !autoScroll"
+              >
+                {{ autoScroll ? "开启" : "关闭" }}
+              </button>
+            </div>
+          </div>
         </div>
       </div>
     </Transition>
@@ -191,7 +205,7 @@
 
 <script setup lang="ts">
 const { difficulty, cols, availableChars, chtOrChs } = useGame();
-const { reverseWubi } = useConfig();
+const { reverseWubi, autoScroll } = useConfig();
 const props = defineProps<{
   isOpen: boolean;
 }>();

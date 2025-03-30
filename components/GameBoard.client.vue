@@ -29,7 +29,7 @@
       </template>
     </div>
     <InputBox v-model="inputValue" @submit="submit" />
-    <div class="grid-container" v-if="currentGuessChoices">
+    <div class="grid-container pb-4" v-if="currentGuessChoices">
       <template
         v-for="i in Math.max(
           ...Object.values(currentGuessChoices).map((col) => col?.length || 0)
@@ -79,6 +79,16 @@ const {
 } = useBoard();
 const { letterStatus } = useSolver();
 const showLetterStatusFor = ref<keyof typeof letterStatus.value | null>(null);
+const { autoScroll } = useConfig();
+watch(currentGuessChoices, async (newVal) => {
+  await nextTick();
+  if (autoScroll.value) {
+    window.scrollTo({
+      top: document.body.scrollHeight,
+      behavior: "smooth",
+    });
+  }
+});
 </script>
 
 <style scoped>
