@@ -10,7 +10,7 @@ export default defineNuxtConfig({
     "@nuxt/image",
     "@vite-pwa/nuxt",
   ],
-  css: ["@unocss/reset/tailwind-compat.css"],
+  css: ["@unocss/reset/tailwind-compat.css", "~/assets/font.css"],
   app: {
     head: {
       link: [

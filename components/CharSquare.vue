@@ -7,7 +7,7 @@
       { sm: sm },
       { 'is-odd': isOdd },
     ]"
-    class="char-square"
+    class="char-square font-plangothic"
   >
     <span>{{ char }}</span>
   </div>

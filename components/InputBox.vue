@@ -6,6 +6,7 @@
       v-model="inputValue"
       @keypress.enter="submit"
       ref="inputRef"
+      class="font-plangothic"
     />
     <button @click="submit" :disabled="!valid">提交</button>
   </div>

@@ -64,12 +64,9 @@
           </p>
 
           <h3 class="text-lg font-bold mt-3">FAQ</h3>
-          <p>问：为什么有的汉字我看不到？</p>
-          <p>答：困难模式会有许多生僻字，一般设备有可能缺少字库而无法显示。</p>
-          <br />
           <p>问：困难模式的字我不会输入啊！</p>
           <p>
-            答：同上，困难模式主要面向汉字或输入法爱好者，推荐在电脑上使用合适的字体和输入法游玩，普通人难以游玩是正常的。
+            答：困难模式主要面向汉字或输入法爱好者，推荐在电脑上使用合适的字体和输入法游玩，普通人难以游玩是正常的。
           </p>
           <br />
           <p>问：手机上的排版好奇怪。</p>
@@ -94,6 +91,12 @@
           </p>
           <h3 class="text-lg font-bold mt-3">更新笔记</h3>
           <ul>
+            <li>
+              <span class="font-bold">2025-04-18</span>
+              <span>
+                添加了<a href="https://github.com/Fitzgerald-Porthmouth-Koenigsegg/Plangothic_Project" target="_blank">遍黑体</a>！再也不会因为设备原因看不到汉字了！
+              </span>
+            </li>
             <li>
               <span class="font-bold">2025-03-30</span>
               <span>
