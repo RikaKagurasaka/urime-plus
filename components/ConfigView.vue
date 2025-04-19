@@ -25,13 +25,14 @@
 
           <div class="setting-group">
             <h3>难度</h3>
+            <Transition name="slide-down">
+              <p class="text-xs text-red-500 dark:text-red-400 mb-1" v-if="difficulty == 'hard'">
+                困难模式有大量扩展区汉字，普通输入法可能无法键入！
+              </p>
+            </Transition>
             <div class="options-container">
-              <button
-                v-for="option in difficultyOptions"
-                :key="option.value"
-                :class="['option-btn', { active: difficulty === option.value }]"
-                @click="difficulty = option.value"
-              >
+              <button v-for="option in difficultyOptions" :key="option.value"
+                :class="['option-btn', { active: difficulty === option.value }]" @click="difficulty = option.value">
                 {{ option.label }}
               </button>
             </div>
@@ -40,21 +41,11 @@
               简繁体的判定可能存在错误，仅供参考
             </p>
             <div class="options-container">
-              <button
-                :class="['option-btn', { active: chtOrChs === 'chs' }]"
-                @click="chtOrChs = 'chs'"
-              >
-                仅简体</button
-              ><button
-                :class="['option-btn', { active: chtOrChs === 'cht' }]"
-                @click="chtOrChs = 'cht'"
-              >
+              <button :class="['option-btn', { active: chtOrChs === 'chs' }]" @click="chtOrChs = 'chs'">
+                仅简体</button><button :class="['option-btn', { active: chtOrChs === 'cht' }]" @click="chtOrChs = 'cht'">
                 仅繁体
               </button>
-              <button
-                :class="['option-btn', { active: chtOrChs === 'both' }]"
-                @click="chtOrChs = 'both'"
-              >
+              <button :class="['option-btn', { active: chtOrChs === 'both' }]" @click="chtOrChs = 'both'">
                 两者
               </button>
             </div>
@@ -66,16 +57,10 @@
               变更后需要刷新页面生效
             </p>
             <div class="options-container">
-              <button
-                :class="['option-btn', { active: !reverseWubi }]"
-                @click="reverseWubi = false"
-              >
+              <button :class="['option-btn', { active: !reverseWubi }]" @click="reverseWubi = false">
                 优先简码
               </button>
-              <button
-                :class="['option-btn', { active: reverseWubi }]"
-                @click="reverseWubi = true"
-              >
+              <button :class="['option-btn', { active: reverseWubi }]" @click="reverseWubi = true">
                 优先全码
               </button>
             </div>
@@ -92,16 +77,10 @@
             <div class="col-category">
               <h4>形码</h4>
               <div class="options-container">
-                <button
-                  v-for="col in COLS_SHAPE"
-                  :key="col"
-                  :class="[
-                    'option-btn option-btn-small',
-                    { active: isSelected(col) },
-                  ]"
-                  @click="toggleCol(col, 'multiple')"
-                  :disabled="isDisabled(col)"
-                >
+                <button v-for="col in COLS_SHAPE" :key="col" :class="[
+                  'option-btn option-btn-small',
+                  { active: isSelected(col) },
+                ]" @click="toggleCol(col, 'multiple')" :disabled="isDisabled(col)">
                   {{ colLabels[col] }}
                 </button>
               </div>
@@ -111,16 +90,10 @@
             <div class="col-category">
               <h4>音码</h4>
               <div class="options-container">
-                <button
-                  v-for="col in COLS_PHONETIC"
-                  :key="col"
-                  :class="[
-                    'option-btn option-btn-small',
-                    { active: isSelected(col) },
-                  ]"
-                  @click="toggleCol(col, 'multiple')"
-                  :disabled="isDisabled(col)"
-                >
+                <button v-for="col in COLS_PHONETIC" :key="col" :class="[
+                  'option-btn option-btn-small',
+                  { active: isSelected(col) },
+                ]" @click="toggleCol(col, 'multiple')" :disabled="isDisabled(col)">
                   {{ colLabels[col] }}
                 </button>
               </div>
@@ -130,16 +103,10 @@
             <div class="col-category">
               <h4>双拼</h4>
               <div class="options-container">
-                <button
-                  v-for="col in COLS_DOUBLE"
-                  :key="col"
-                  :class="[
-                    'option-btn option-btn-small',
-                    { active: isSelected(col) },
-                  ]"
-                  @click="toggleCol(col, 'single', 'double')"
-                  :disabled="isDisabled(col)"
-                >
+                <button v-for="col in COLS_DOUBLE" :key="col" :class="[
+                  'option-btn option-btn-small',
+                  { active: isSelected(col) },
+                ]" @click="toggleCol(col, 'single', 'double')" :disabled="isDisabled(col)">
                   {{ colLabels[col] }}
                 </button>
               </div>
@@ -149,16 +116,10 @@
             <div class="col-category">
               <h4>辅助码</h4>
               <div class="options-container">
-                <button
-                  v-for="col in COLS_AUX"
-                  :key="col"
-                  :class="[
-                    'option-btn option-btn-small',
-                    { active: isSelected(col) },
-                  ]"
-                  @click="toggleCol(col, 'single', 'aux')"
-                  :disabled="isDisabled(col)"
-                >
+                <button v-for="col in COLS_AUX" :key="col" :class="[
+                  'option-btn option-btn-small',
+                  { active: isSelected(col) },
+                ]" @click="toggleCol(col, 'single', 'aux')" :disabled="isDisabled(col)">
                   {{ colLabels[col] }}
                 </button>
               </div>
@@ -168,16 +129,10 @@
             <div class="col-category">
               <h4>其他</h4>
               <div class="options-container">
-                <button
-                  v-for="col in COLS_OTHERS"
-                  :key="col"
-                  :class="[
-                    'option-btn option-btn-small',
-                    { active: isSelected(col) },
-                  ]"
-                  @click="toggleCol(col, 'multiple')"
-                  :disabled="isDisabled(col)"
-                >
+                <button v-for="col in COLS_OTHERS" :key="col" :class="[
+                  'option-btn option-btn-small',
+                  { active: isSelected(col) },
+                ]" @click="toggleCol(col, 'multiple')" :disabled="isDisabled(col)">
                   {{ colLabels[col] }}
                 </button>
               </div>
@@ -189,10 +144,7 @@
               在输入框中输入汉字后，自动将屏幕滚动到最底部以显示备选编码
             </p>
             <div class="options-container">
-              <button
-                :class="['option-btn', { active: autoScroll }]"
-                @click="autoScroll = !autoScroll"
-              >
+              <button :class="['option-btn', { active: autoScroll }]" @click="autoScroll = !autoScroll">
                 {{ autoScroll ? "开启" : "关闭" }}
               </button>
             </div>
@@ -330,8 +282,10 @@ function isDisabled(col: Col): boolean {
 
 .config-panel {
   @apply fixed top-0 right-0 bottom-0 w-120 max-w-full bg-white dark:bg-gray-800 shadow-lg z-20 p-5 overflow-y-auto text-gray-900 dark:text-gray-100;
+
   & button:not(.active) {
     @apply dark:bg-gray-700 dark:text-gray-100;
+
     &:hover {
       @apply dark:bg-gray-600;
     }
@@ -372,6 +326,7 @@ function isDisabled(col: Col): boolean {
 
 .setting-group h3 {
   @apply my-3 text-lg font-medium;
+
   &:has(+ p) {
     @apply mb-1;
   }
@@ -384,8 +339,7 @@ function isDisabled(col: Col): boolean {
 
 /* Common button styles */
 .option-btn {
-  @apply px-2 py-1 border border-gray-200 dark:border-gray-600 rounded bg-gray-100 
-  cursor-pointer transition-all duration-200;
+  @apply px-2 py-1 border border-gray-200 dark:border-gray-600 rounded bg-gray-100 cursor-pointer transition-all duration-200;
 }
 
 .option-btn:hover:not(:disabled) {
