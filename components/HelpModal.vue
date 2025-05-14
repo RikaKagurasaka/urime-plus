@@ -92,6 +92,18 @@
           <h3 class="text-lg font-bold mt-3">更新笔记</h3>
           <ul>
             <li>
+              <span class="font-bold">2025-05-14</span>
+              <span>
+                因为系统从Linux换成了Windows，导致重新生成数据文件的时候用\r\n而不是\n，使得数据文件无法被正确解析。Windows全责。现在已经修复。
+              </span>
+            </li>
+            <li>
+              <span class="font-bold">2025-05-13</span>
+              <span>
+                移除了更多罕见拼音。<s>改完没有测试导致爆炸</s>
+              </span>
+            </li>
+            <li>
               <span class="font-bold">2025-04-18</span>
               <span>
                 添加了<a href="https://github.com/Fitzgerald-Porthmouth-Koenigsegg/Plangothic_Project" target="_blank">遍黑体</a>！再也不会因为设备原因看不到汉字了！
