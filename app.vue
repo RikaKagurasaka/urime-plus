@@ -1,5 +1,6 @@
 <template>
   <div>
+    <Analytics />
     <NuxtPwaAssets />
     <NuxtRouteAnnouncer />
     <NuxtPage />
@@ -14,6 +15,7 @@
 }
 </style>
 <script setup>
+import { Analytics } from "@vercel/analytics/nuxt";
 if (import.meta.client) {
   if (localStorage.getItem("version") !== "1.0.0") {
     localStorage.clear();
