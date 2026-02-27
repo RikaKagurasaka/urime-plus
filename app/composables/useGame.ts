@@ -1,5 +1,5 @@
 import pako from "pako";
-import Papa, { type ParseResult } from "papaparse";
+import type { ParseResult } from "papaparse";
 import _ from "lodash";
 
 const { mapValues } = _;
@@ -28,48 +28,53 @@ export type GuessResult = Record<
 const { reverseWubi } = useConfig();
 
 async function loadData() {
-  const response = await fetch("/merged.gz");
-  const compressedData = await response.arrayBuffer();
-  const decompressedData = pako.inflate(compressedData);
-  const csvData = new TextDecoder().decode(decompressedData);
-  const data = Papa.parse(csvData, {
-    header: true,
-    transform: (value, header) => {
-      let result = value as any;
-      if (header === "lvl") {
-        result = value ? parseInt(value) : null;
-      }
-      if (header === "cht" || header === "chs") {
-        result = value === "1";
-      }
-      if (COLS_ALL.includes(header as Col)) {
-        result = value ? value.split("|") : null;
-      }
-      if (
-        reverseWubi.value &&
-        ["wubi", "zhengma", "xuma", "huma","liur"].some((col) =>
-          header.toString().startsWith(col)
-        )
-      ) {
-        if (result && "reverse" in result) {
-          result = result.reverse();
+  if (import.meta.client) {
+    const response = await fetch("/merged.gz");
+    const compressedData = await response.arrayBuffer();
+    const decompressedData = pako.inflate(compressedData);
+    const csvData = new TextDecoder().decode(decompressedData);
+    const Papa = await import("papaparse");
+    const data = Papa.parse(csvData, {
+      header: true,
+      transform: (value, header) => {
+        let result = value as any;
+        if (header === "lvl") {
+          result = value ? parseInt(value) : null;
         }
-      }
-      return result;
-    },
-  }) as ParseResult<any>;
-
-  let dict = Object.fromEntries(
-    data.data.map((row) => [
-      row.char,
-      {
-        ...row,
-        unicode: [row.char?.codePointAt(0)?.toString(16)],
+        if (header === "cht" || header === "chs") {
+          result = value === "1";
+        }
+        if (COLS_ALL.includes(header as Col)) {
+          result = value ? value.split("|") : null;
+        }
+        if (
+          reverseWubi.value &&
+          ["wubi", "zhengma", "xuma", "huma", "liur"].some((col) =>
+            header.toString().startsWith(col)
+          )
+        ) {
+          if (result && "reverse" in result) {
+            result = result.reverse();
+          }
+        }
+        return result;
       },
-    ])
-  ) as DataDictionary;
+    }) as ParseResult<any>;
 
-  return dict;
+    let dict = Object.fromEntries(
+      data.data.map((row) => [
+        row.char,
+        {
+          ...row,
+          unicode: [row.char?.codePointAt(0)?.toString(16)],
+        },
+      ])
+    ) as DataDictionary;
+
+    return dict;
+  } else {
+    return {} as DataDictionary;
+  }
 }
 
 function isLvlMatch(
@@ -287,7 +292,7 @@ const _useGame = () => {
   function refresh() {
     ans.value =
       availableChars.value[
-        Math.floor(Math.random() * availableChars.value.length)
+      Math.floor(Math.random() * availableChars.value.length)
       ];
   }
 
